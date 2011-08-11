@@ -1,8 +1,13 @@
 class git {
 	import "definitions/*.pp"
 
+	$package_name = $operatingsystem ? {
+		Ubuntu => "git-core",
+		default => "git",
+	}
+
 	package {
-		'git-core':
+		"${package_name}":
 			ensure => latest
 	}
 }
